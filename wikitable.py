@@ -47,3 +47,8 @@ ssp2=ssp2[::-1]
 df2 = pd.DataFrame.from_records(ssp2)
 df2.columns = ['Date', 'Added Ticker', 'Added Security','Removed Ticker ', 'Removed Security', 'Reason']
 df2
+##
+Data_Frames=pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+Data_Frames[0]
+##
+Data_Frames[1]
