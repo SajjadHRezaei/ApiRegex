@@ -1,0 +1,37 @@
+import requests
+import json
+
+url = "https://world-population.p.rapidapi.com/population"
+country_list=['China','United States','Japan','Iran','Germany', 'Canada', 'Italy']
+
+data={}
+for country_name in country_list:
+    querystring = {"country_name":country_name}
+
+    headers = {
+        'x-rapidapi-key': "a4fa9fadb3msh2dbc8b75d752a88p1b12aajsn790cda69ac1a",
+        'x-rapidapi-host': "world-population.p.rapidapi.com"
+        }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+    data[country_name]=json.loads(response.text)
+data
+
+import pandas as pd
+
+df=pd.DataFrame.from_dict({(i,j): data[i][j] 
+                           for i in data.keys() 
+                           for j in data[i].keys()},
+                       orient='columns').T
+
+df_n=df.drop(index='ok',level=1)
+df_ncoun
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+fig = plt.figure(figsize=(20,8))
+ax = sns.barplot(x="ranking",y='world_share', hue='country_name' ,data=df_n)
+plt.show()
+
